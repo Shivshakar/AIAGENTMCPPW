@@ -30,5 +30,8 @@ jobs:
     - name: Check build
       run: npm run build
 
+    - name: Set Playwright cache directory
+      run: echo "PLAYWRIGHT_BROWSERS_PATH=./playwright-cache" >> $GITHUB_ENV
+
     - name: Install Playwright browsers with dependencies
       run: npx playwright install --with-deps
