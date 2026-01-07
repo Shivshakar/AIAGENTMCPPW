@@ -30,7 +30,3 @@ jobs:
 
     - name: Run tests
       run: npm test
-
-    # Optional – keep only if your app needs build
-    - name: Build application
-      run: npm run build
