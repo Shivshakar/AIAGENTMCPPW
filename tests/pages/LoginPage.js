@@ -41,4 +41,6 @@ class LoginPage extends BasePage {
   }
 }
 
+console.log('LoginPage module loaded');
+
 module.exports = LoginPage;
