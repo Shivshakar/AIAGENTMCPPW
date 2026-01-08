@@ -26,13 +26,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                sh 'npm test'
-            }
-        }
-
-        stage('Build') {
-            steps {
-                sh 'npm run build'
+                sh 'npx playwright test --reporter=junit'
             }
         }
     }
