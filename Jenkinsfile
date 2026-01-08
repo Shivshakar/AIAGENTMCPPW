@@ -18,6 +18,12 @@ pipeline {
             }
         }
 
+        stage('Install Playwright Browsers') {
+            steps {
+                sh 'npx playwright install --with-deps'
+            }
+        }
+
         stage('Run Tests') {
             steps {
                 sh 'npm test'
