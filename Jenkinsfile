@@ -1,11 +1,16 @@
 pipeline {
     agent any
 
+    options {
+        skipDefaultCheckout()
+    }
+
     environment {
-        PLAYWRIGHT_BROWSERS_PATH = './playwright-cache'
+        PLAYWRIGHT_BROWSERS_PATH = 'playwright-cache'
     }
 
     stages {
+
         stage('Checkout') {
             steps {
                 checkout scm
@@ -33,10 +38,11 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'test-results/**', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'playwright-report/**, test-results/**', allowEmptyArchive: true
+
             publishHTML(target: [
-                reportName: 'TestNG Report',
-                reportDir: 'test-output',
+                reportName: 'Playwright Test Report',
+                reportDir: 'playwright-report',
                 reportFiles: 'index.html',
                 keepAll: true,
                 alwaysLinkToLastBuild: true
