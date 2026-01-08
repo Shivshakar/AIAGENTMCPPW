@@ -26,7 +26,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                sh 'npx testng -config testng.xml'
+                sh 'npx playwright test'
             }
         }
     }
