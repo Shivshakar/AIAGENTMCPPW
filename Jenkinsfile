@@ -26,15 +26,21 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                sh 'npx playwright test --reporter=junit'
+                sh 'npx testng -config testng.xml'
             }
         }
     }
 
     post {
         always {
-            archiveArtifacts artifacts: '**/test-results/**', allowEmptyArchive: true
-            junit '**/test-results/results.xml'
+            archiveArtifacts artifacts: 'test-output/**', allowEmptyArchive: true
+            publishHTML(target: [
+                reportName: 'TestNG Report',
+                reportDir: 'test-output',
+                reportFiles: 'index.html',
+                keepAll: true,
+                alwaysLinkToLastBuild: true
+            ])
         }
     }
 }
