@@ -26,7 +26,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                sh 'npx playwright test --reporter=junit --output=test-results'
+                sh 'npx testng -config testng.xml'
             }
         }
     }
